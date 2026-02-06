@@ -1,26 +1,29 @@
-import { useState } from "react";
-import Hero from "./components/Hero";
-import Services from "./components/Services";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Residential from "./pages/services/Residential";
+import DeepCleaning from "./pages/services/DeepCleaning";
+import Commercial from "./pages/services/Commercial";
+import MoveInOut from "./pages/services/MoveInOut";
+import WindowCleaning from "./pages/services/WindowCleaning";
 import "./App.css";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
   return (
-    <div className={darkMode ? "app dark" : "app"}>
-      <header className="top-bar">
-        <h1 className="brand">Stonic Cleaning Services</h1>
+    <div className="app">
+      <Navbar />
 
-        <button
-          className="mode-toggle"
-          onClick={() => setDarkMode(!darkMode)}
-        >
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </button>
-      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services/residential" element={<Residential />} />
+        <Route path="/services/deep" element={<DeepCleaning />} />
+        <Route path="/services/commercial" element={<Commercial />} />
+        <Route path="/services/move" element={<MoveInOut />} />
+        <Route path="/services/windows" element={<WindowCleaning />} />
+      </Routes>
 
-      <Hero darkMode={darkMode} />
-      <Services />
+      <Footer />
     </div>
   );
 }
