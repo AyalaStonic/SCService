@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Hero from "./components/Hero";
+import Services from "./components/Services";
+import "./App.css";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className={darkMode ? "app dark" : "app"}>
+      <header className="top-bar">
+        <h1 className="brand">Stonic Cleaning Services</h1>
+
+        <button
+          className="mode-toggle"
+          onClick={() => setDarkMode(!darkMode)}
         >
-          Learn React
-        </a>
+          {darkMode ? "Light Mode" : "Dark Mode"}
+        </button>
       </header>
+
+      <Hero darkMode={darkMode} />
+      <Services />
     </div>
   );
 }
