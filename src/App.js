@@ -3,10 +3,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Residential from "./pages/services/Residential";
-import DeepCleaning from "./pages/services/DeepCleaning";
 import Commercial from "./pages/services/Commercial";
 import MoveInOut from "./pages/services/MoveInOut";
 import WindowCleaning from "./pages/services/WindowCleaning";
+import ContactPage from "./pages/ContactPage"; // NEW
 import "./App.css";
 
 function App() {
@@ -17,10 +17,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services/residential" element={<Residential />} />
-        <Route path="/services/deep" element={<DeepCleaning />} />
         <Route path="/services/commercial" element={<Commercial />} />
         <Route path="/services/move" element={<MoveInOut />} />
         <Route path="/services/windows" element={<WindowCleaning />} />
+        <Route path="/contact" element={<ContactPage />} /> {/* NEW */}
       </Routes>
 
       <Footer />

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import logo from "../assets/main_logo.png";
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <div className="call-bar">
@@ -13,15 +16,26 @@ function Navbar() {
 
       <nav className="top-bar">
         <div className="brand">
-          <img src={logo} alt="Stonic Cleaning Services" />
-          <span>Stonic Cleaning Service</span>
+          <Link to="/" className="logo-link" onClick={() => setMenuOpen(false)}>
+            <img src={logo} alt="Stonic Cleaning Service" />
+            <span>Stonic Cleaning Service</span>
+          </Link>
         </div>
 
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/#services">Services</Link>
-          <Link to="/contact">Contact Us</Link>
+        <div
+          className={`hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className={`nav-links ${menuOpen ? "active" : ""}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link to="/#services" onClick={() => setMenuOpen(false)}>Services</Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact Us</Link>
         </div>
       </nav>
     </>

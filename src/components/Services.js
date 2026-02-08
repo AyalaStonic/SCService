@@ -12,10 +12,6 @@ export default function Services() {
           Residential Cleaning
         </div>
 
-        <div className="service-card" onClick={() => navigate("/services/deep")}>
-          Deep Cleaning
-        </div>
-
         <div className="service-card" onClick={() => navigate("/services/commercial")}>
           Commercial Cleaning
         </div>
