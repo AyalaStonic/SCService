@@ -18,7 +18,7 @@ function Navbar() {
         <div className="brand">
           <Link to="/" className="logo-link" onClick={() => setMenuOpen(false)}>
             <img src={logo} alt="Stonic Cleaning Service" />
-            <span>Stonic Cleaning Service</span>
+            <span>Stonic Cleaning Services</span>
           </Link>
         </div>
 
@@ -34,7 +34,17 @@ function Navbar() {
         <div className={`nav-links ${menuOpen ? "active" : ""}`}>
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-          <Link to="/#services" onClick={() => setMenuOpen(false)}>Services</Link>
+          <Link to="/" onClick={() => {
+  setMenuOpen(false);
+  setTimeout(() => {
+    document.getElementById("services")?.scrollIntoView({
+      behavior: "smooth"
+    });
+  }, 100);
+}}>
+  Services
+</Link>
+
           <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact Us</Link>
         </div>
       </nav>
