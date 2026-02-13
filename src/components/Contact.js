@@ -48,25 +48,34 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = (e) => {
+  e.preventDefault();
 
-    emailjs
-      .send(
-        "service_c64f9mh",  
-        "template_4cnhmcl", 
+  emailjs
+    .send(
+      "service_c64f9mh",
+      "template_4cnhmcl",
+      formData,
+      "Y2gYYQRLy3S7DgvwL"
+    )
+    .then(() => {
+      return emailjs.send(
+        "service_c64f9mh",
+        "template_g4qhkyi", 
         formData,
-        "Y2gYYQRLy3S7DgvwL"   
-      )
-      .then(() => {
-        setStatus("Request sent successfully!");
-        resetForm();
-      })
-      .catch((error) => {
-        console.error("EmailJS Error:", error);
-        setStatus("Error sending request. Please try again.");
-      });
-  };
+        "Y2gYYQRLy3S7DgvwL"
+      );
+    })
+    .then(() => {
+      setStatus("Request sent successfully!");
+      resetForm();
+    })
+    .catch((error) => {
+      console.error("EmailJS Error:", error);
+      setStatus("Error sending request. Please try again.");
+    });
+};
+
 
   return (
     <section className="quote-form" id="quote">
@@ -237,7 +246,12 @@ const Contact = () => {
         </button>
       </form>
 
-      <p>{status}</p>
+      {status && (
+  <div className={`form-status ${status.includes("Error") ? "error" : "success"}`}>
+    {status}
+  </div>
+)}
+
     </section>
   );
 };

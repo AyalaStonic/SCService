@@ -12,15 +12,14 @@ function Hero({ darkMode }) {
           className="logo"
         />
 
-        <h1>A Cleaner Space. A Clearer Mind.</h1>
+        <h1>A Clearer Mind Starts with a Cleaner Space.</h1>
 
         <p>
-          Premium residential and commercial cleaning designed to bring order,
-          comfort, and peace of mind to your space.
+          Thoughtful and reliable residential and commercial cleaning that brings order,
+           comfort, and peace of mind to your space.
           <br /><br />
-          We begin with a <strong>free on-site walkthrough</strong> so we can
-          understand your space and provide a detailed, accurate quote —
-          tailored specifically to you.
+          We start with a <strong>free on-site walkthrough </strong> 
+           to understand your needs and provide a clear, detailed quote - tailored to you.
         </p>
 
         <Link to="/contact">
