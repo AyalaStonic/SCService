@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,70 +27,67 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const resetForm = () => {
+    setFormData({
+      fullName: "",
+      phone: "",
+      email: "",
+      contactMethod: "Call",
+      address: "",
+      city: "",
+      propertyType: "Apartment",
+      squareFootage: "",
+      bedrooms: "",
+      bathrooms: "",
+      frequency: "One-Time",
+      condition: "Light",
+      lastCleaning: "",
+      specialAreas: "",
+      walkthroughDate: "",
+      walkthroughTime: ""
+    });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("QUOTE SUBMITTED:", formData);
-
-    try {
-      const response = await fetch("http://localhost:5000/send-message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
+    emailjs
+      .send(
+        "service_c64f9mh",  
+        "template_4cnhmcl", 
+        formData,
+        "Y2gYYQRLy3S7DgvwL"   
+      )
+      .then(() => {
+        setStatus("Request sent successfully!");
+        resetForm();
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        setStatus("Error sending request. Please try again.");
       });
-
-      const result = await response.json();
-      setStatus(result.status || "Request sent successfully!");
-
-      setFormData({
-        fullName: "",
-        phone: "",
-        email: "",
-        contactMethod: "Call",
-        address: "",
-        city: "",
-        propertyType: "Apartment",
-        squareFootage: "",
-        bedrooms: "",
-        bathrooms: "",
-        frequency: "One-Time",
-        condition: "Light",
-        lastCleaning: "",
-        specialAreas: "",
-        walkthroughDate: "",
-        walkthroughTime: ""
-      });
-    } catch (error) {
-      console.error("FRONTEND ERROR:", error);
-      setStatus("Error sending request.");
-    }
   };
 
   return (
     <section className="quote-form" id="quote">
       <h2>Schedule a Free Cleaning Consultation</h2>
 
-
-     <p className="quote-subtext">
-  Tell us a bit about your space and cleaning needs. We’ll schedule a complimentary
-  on-site walkthrough to provide a customized cleaning plan and accurate pricing.
-</p>
-
+      <p className="quote-subtext">
+        Tell us a bit about your space and cleaning needs. We’ll schedule a complimentary
+        on-site walkthrough to provide a customized cleaning plan and accurate pricing.
+      </p>
 
       <form onSubmit={handleSubmit}>
         <h3>Client Information</h3>
 
-       <input
-  type="text"
-  name="fullName"
-  placeholder="Name or Company Name"
-  value={formData.fullName}
-  onChange={handleChange}
-  required
-/>
-
+        <input
+          type="text"
+          name="fullName"
+          placeholder="Name or Company Name"
+          value={formData.fullName}
+          onChange={handleChange}
+          required
+        />
 
         <input
           type="tel"
@@ -110,7 +108,11 @@ const Contact = () => {
         />
 
         <label>Preferred Method of Contact</label>
-        <select name="contactMethod" value={formData.contactMethod} onChange={handleChange}>
+        <select
+          name="contactMethod"
+          value={formData.contactMethod}
+          onChange={handleChange}
+        >
           <option>Call</option>
           <option>Text</option>
           <option>Email</option>
@@ -137,7 +139,11 @@ const Contact = () => {
         />
 
         <label>Property Type</label>
-        <select name="propertyType" value={formData.propertyType} onChange={handleChange}>
+        <select
+          name="propertyType"
+          value={formData.propertyType}
+          onChange={handleChange}
+        >
           <option>Apartment</option>
           <option>Condo</option>
           <option>Single-Family Home</option>
@@ -145,29 +151,32 @@ const Contact = () => {
           <option>Retail Space</option>
         </select>
 
-      {!["Office", "Retail Space"].includes(formData.propertyType) && (
-  <>
-    <input
-      type="number"
-      name="bedrooms"
-      placeholder="Number of Bedrooms"
-      value={formData.bedrooms}
-      onChange={handleChange}
-    />
+        {!["Office", "Retail Space"].includes(formData.propertyType) && (
+          <>
+            <input
+              type="number"
+              name="bedrooms"
+              placeholder="Number of Bedrooms"
+              value={formData.bedrooms}
+              onChange={handleChange}
+            />
 
-    <input
-      type="number"
-      name="bathrooms"
-      placeholder="Number of Bathrooms"
-      value={formData.bathrooms}
-      onChange={handleChange}
-    />
-  </>
-)}
-
+            <input
+              type="number"
+              name="bathrooms"
+              placeholder="Number of Bathrooms"
+              value={formData.bathrooms}
+              onChange={handleChange}
+            />
+          </>
+        )}
 
         <label>Service Frequency</label>
-        <select name="frequency" value={formData.frequency} onChange={handleChange}>
+        <select
+          name="frequency"
+          value={formData.frequency}
+          onChange={handleChange}
+        >
           <option>One-Time</option>
           <option>Weekly</option>
           <option>Bi-Weekly</option>
@@ -177,7 +186,11 @@ const Contact = () => {
         <h3>Cleaning Scope & Condition</h3>
 
         <label>Current Condition</label>
-        <select name="condition" value={formData.condition} onChange={handleChange}>
+        <select
+          name="condition"
+          value={formData.condition}
+          onChange={handleChange}
+        >
           <option>Light</option>
           <option>Moderate</option>
           <option>Heavy</option>
@@ -191,7 +204,6 @@ const Contact = () => {
           onChange={handleChange}
         ></textarea>
 
-        {/* WALKTHROUGH SECTION */}
         <div className="walkthrough-box">
           <h3>Free On-Site Walkthrough</h3>
           <p>
@@ -222,7 +234,6 @@ const Contact = () => {
 
         <button type="submit" className="cta">
           Schedule My Free Walkthrough
-
         </button>
       </form>
 

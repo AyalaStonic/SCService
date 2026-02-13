@@ -33,7 +33,20 @@ function Navbar() {
 
         <div className={`nav-links ${menuOpen ? "active" : ""}`}>
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link
+  to="/"
+  onClick={() => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      document.getElementById("about")?.scrollIntoView({
+        behavior: "smooth"
+      });
+    }, 100);
+  }}
+>
+  About
+</Link>
+
           <Link to="/" onClick={() => {
   setMenuOpen(false);
   setTimeout(() => {

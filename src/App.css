@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+
 html, body {
   width: 100%;
   overflow-x: hidden;
@@ -13,11 +14,16 @@ html, body {
 /* ===== APP ROOT ===== */
 .app {
   font-family: "Segoe UI", system-ui, sans-serif;
-  background: #ffffff;
+  background: linear-gradient(
+    180deg,
+    #e2f1f6 0%,
+    #b4bec1 100%
+  );
   color: #0f172a;
   min-height: 100vh;
   transition: all 0.3s ease;
 }
+
 
 .app.dark {
   background: #0e1215;
@@ -226,38 +232,69 @@ html, body {
 
 /* ===== SERVICES ===== */
 .services {
-  padding: 90px 10%;
-  background: #ffffff;
+  padding: 120px 10%;
   text-align: center;
+  position: relative;
+  scroll-margin-top: 130px;
+
+  /* Soft luxury gradient background */
+  background: linear-gradient(
+    180deg,
+    #f4fbfd 0%,
+    #ffffff 40%,
+    #f8fafc 100%
+  );
+}
+
+/* subtle accent line at top */
+.services::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #0b2f4a, #e6c88c);
+  border-radius: 20px;
 }
 
 .services-title {
-  font-size: 2.4rem;
-  margin-bottom: 10px;
+  font-size: 2.6rem;
+  margin-bottom: 12px;
+  color: #0b2f4a;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .services-subtitle {
   color: #475569;
   max-width: 600px;
-  margin: 0 auto 40px;
-  line-height: 1.6;
+  margin: 0 auto 60px;
+  line-height: 1.7;
+  font-size: 1.05rem;
 }
 
 .service-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
 }
 
 .service-card {
-  padding: 40px 26px;
-  border-radius: 20px;
+  padding: 45px 30px;
+  border-radius: 22px;
   cursor: pointer;
-  background: linear-gradient(135deg, #ffffff, #f8fafc);
   text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
+
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
   border: 1px solid #e2e8f0;
+}
+
+.app.dark .services {
+  background: #0f1419;
 }
 
 .app.dark .service-card {
@@ -266,22 +303,24 @@ html, body {
 }
 
 .service-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
   color: #0b2f4a;
+  font-weight: 600;
 }
 
 .service-card p {
   font-size: 0.95rem;
   color: #475569;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  transform: translateY(-10px);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.12);
   border-color: #e6c88c;
 }
+
 
 
 /* ===== SERVICE PAGE ===== */
